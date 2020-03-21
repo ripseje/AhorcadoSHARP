@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>hang.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -103,6 +106,25 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ahorcado_fin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="hang.ico" />
+    <Content Include="Resources\ahorcado1.png" />
+    <None Include="Resources\ahorcadofin1.png" />
+    <None Include="Resources\ahorcado71.png" />
+    <None Include="Resources\ahorcado61.png" />
+    <None Include="Resources\ahorcado51.png" />
+    <None Include="Resources\ahorcado41.png" />
+    <None Include="Resources\ahorcado31.png" />
+    <None Include="Resources\ahorcado21.png" />
+    <None Include="Resources\ahorcado11.png" />
+    <Content Include="Resources\ahorcado2.png" />
+    <Content Include="Resources\ahorcado3.png" />
+    <Content Include="Resources\ahorcado4.png" />
+    <Content Include="Resources\ahorcado5.png" />
+    <Content Include="Resources\ahorcado6.png" />
+    <Content Include="Resources\ahorcado7.png" />
+    <Content Include="Resources\ahorcadofin.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

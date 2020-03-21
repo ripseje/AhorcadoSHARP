@@ -12,23 +12,39 @@ namespace Ahorcado
 {
     public partial class Form1 : Form
     {
-        String palabraOculta = "CETYS";
+        String palabraOculta = "";
         int numeroFallos = 0;
+        Boolean victoria = false;
+        Boolean derrota = false;
 
         public Form1()
         {
             InitializeComponent();
+            palabraOculta = palabra();
+            String aux = "";
+            for (int i=0; i < palabraOculta.Length; i++)
+            {
+                aux = aux + "_ ";
+            }
+            label1.Text = aux;
         }
 
         private void letraPulsada(object sender, EventArgs e)
         {
             Button miBoton = (Button)sender;
             String letra = miBoton.Text;
+            String palabra = label1.Text;
             letra = letra.ToUpper();
-            if (palabraOculta.Contains(letra))
+            if (palabraOculta.Contains(letra) && !(victoria) && !(derrota))
             {
-                int posicion = palabraOculta.IndexOf(letra);
-                label1.Text = label1.Text.Remove(2 * posicion, 1).Insert(2 * posicion, letra);
+                for (int i = 0; i < palabraOculta.Length; i++)
+                {
+                    if (palabraOculta[i] == letra.ToCharArray()[0])
+                    {
+                        palabra = palabra.Substring(0, 2 * i) + letra + palabra.Substring(2 * i + 1);
+                    }
+                }
+                label1.Text = palabra;
             }
             else
             {
@@ -37,20 +53,58 @@ namespace Ahorcado
             if (!label1.Text.Contains('_'))
             {
                 numeroFallos = -100;
+                victoriaX();
             }
+            
             miBoton.Enabled = false;
-            switch (numeroFallos)
+            if (!victoria && !derrota)
             {
-                case 0: pictureBox1.Image = Properties.Resources.ahorcado_0; break;
-                case 1: pictureBox1.Image = Properties.Resources.ahorcado_1; break;
-                case 2: pictureBox1.Image = Properties.Resources.ahorcado_2; break;
-                case 3: pictureBox1.Image = Properties.Resources.ahorcado_3; break;
-                case 4: pictureBox1.Image = Properties.Resources.ahorcado_4; break;
-                case 5: pictureBox1.Image = Properties.Resources.ahorcado_5; break;
-                case 6: pictureBox1.Image = Properties.Resources.ahorcado_fin; break;
-                case -100: pictureBox1.Image = Properties.Resources.acertasteTodo; break;
-                default: pictureBox1.Image = Properties.Resources.ahorcado_fin; break;
+                switch (numeroFallos)
+                {
+                    case 0: pictureBox1.Image = Properties.Resources.ahorcado1; break;
+                    case 1: pictureBox1.Image = Properties.Resources.ahorcado2; break;
+                    case 2: pictureBox1.Image = Properties.Resources.ahorcado3; break;
+                    case 3: pictureBox1.Image = Properties.Resources.ahorcado4; break;
+                    case 4: pictureBox1.Image = Properties.Resources.ahorcado5; break;
+                    case 5: pictureBox1.Image = Properties.Resources.ahorcado6; break;
+                    case 6: pictureBox1.Image = Properties.Resources.ahorcadofin; derrotaX();  break;
+                    case -100: pictureBox1.Image = Properties.Resources.acertasteTodo; break;
+                    default: pictureBox1.Image = Properties.Resources.ahorcadofin; break;
+                }
             }
+            
+            
+
+        }
+
+        public string palabra()
+        {
+            String[] listaPalabras = {"HOLA", "VALEKAKA", "BORREGUITO", "BABYYODA",
+                                            "DELYNITH", "FORESKIN", "ANDERE", "FUNCIONARIO", "CHINO", "GALLOS",
+                                            "OSU", "TRONCO", "COJONES", "BOOLEAN", "STRING", "PAPI", "CELESTINA",
+                                            "ARKANOID", "FRAXITO"};
+
+            Random ran = new Random();
+            int posicion = ran.Next(listaPalabras.Length);
+            return listaPalabras[posicion].ToUpper();
+            
+        }
+        
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public void victoriaX()
+        {
+            pictureBox1.Image = Properties.Resources.acertasteTodo;
+            victoria = true;
+        }
+
+        public void derrotaX()
+        {
+            pictureBox1.Image = Properties.Resources.ahorcadofin;
+            derrota = true;
         }
     }
 }
